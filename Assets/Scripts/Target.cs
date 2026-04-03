@@ -48,12 +48,17 @@ public class Target : MonoBehaviour, IPointerClickHandler
 
         var gm = FindAnyObjectByType<GameManager>();
         gm.UpdateScore(point);
+        Instantiate(explosionParticle, transform.position, Quaternion.identity);
     }
+
+    
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Sensor"))
         {
+            var gm = FindAnyObjectByType<GameManager>();
+            gm.UpdateScore(-5);
             Destroy(this.gameObject);   
         }
     }
