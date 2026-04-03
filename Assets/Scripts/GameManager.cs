@@ -34,7 +34,14 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        scoreText.text = "Score : " +  score;
         StartGame();
+    }
+
+    public void UpdateScore(int s)
+    {
+        score += s;
+        scoreText.text = "Score : " + score;
     }
 
     void StartGame()
@@ -49,7 +56,7 @@ public class GameManager : MonoBehaviour
             int idx = Random.Range(0, targets.Count);
             var prefab = targets[idx];
             Instantiate(prefab);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
         }
     }
 }
